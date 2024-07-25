@@ -14,7 +14,6 @@ let
   pin = lib.importJSON ./pin.json;
 
   pname = "wrangler";
-  version = "3.66.0";
 
   src = fetchFromGitHub {
     owner = "cloudflare";
@@ -24,7 +23,8 @@ let
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
-    inherit pname version src;
+    inherit (pin) version;
+    inherit pname src;
     hash = pin.pnpmDepsHash;
   };
 
@@ -49,7 +49,8 @@ let
   };
 in 
 stdenv.mkDerivation (finalAttrs: {
-  inherit pname version src pnpmDeps meta;
+  inherit (pin) version; 
+  inherit pname src pnpmDeps meta;
 
   buildInputs = [
     llvmPackages.libcxx
