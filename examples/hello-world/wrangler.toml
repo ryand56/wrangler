@@ -1,0 +1,7 @@
+name = "hello-world"
+main = "./worker.js"
+compatibility_date = "2024-07-26" # https://developers.cloudflare.com/workers/configuration/compatibility-dates/
+
+[dev]
+port = 8989
+local_protocol = "http"
