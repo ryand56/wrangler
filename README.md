@@ -1,13 +1,37 @@
 # Cloudflare Workers Wrangler SDK Flake
-Packaged Cloudflare Wrangler SDK in a Nix flake.
+
+Packaged [Cloudflare Wrangler SDK](https://developers.cloudflare.com/workers/wrangler/) ([git repo](https://github.com/cloudflare/workers-sdk)) in a Nix flake.
+
+## Why?
+
+[`wrangler`](https://search.nixos.org/packages?channel=unstable&show=wrangler&from=0&size=50&sort=relevance&type=packages&query=wrangler)
+is already bundled with `nixpkgs`. You can use it as a standard `nix` package
+as you would any other package...
+
+```nix
+  packages = with pkgs; [
+    wrangler
+    # any other packages you want...
+  ];
+```
+
+However, the release cadence of `wrangler`, is high - typically releasing a new
+version every week - and it is not really possible for `nixpkgs` to keep up
+with this. Hence, the version of `wrangler` available in `nixpkgs` will usually 
+be a little behind the latest version and if you're not using the `master` branch,
+it could potentially be significantly behind the latest version.
+
+We hope to provide an update to `wrangler` on the `nixpkgs` `master` branch
+approximately every month or so.
+
+If you want to use the most up to date version of `wrangler`, you can use this 
+flake which is updated more frequently - we will try to update this within a 
+few days of the latest `wrangler` release.
 
 ## Usage
 
-### Nixpkgs
-The wrangler package is bundled in with nixpkgs already, but updates are monthly.
-
-### With Flake
 Get the recent release of wrangler from FlakeHub in your flake inputs:
+
 ```nix
 {
   inputs.wrangler.url = "https://flakehub.com/f/ryand56/wrangler/*.tar.gz";
@@ -17,7 +41,6 @@ Get the recent release of wrangler from FlakeHub in your flake inputs:
   };
 }
 ```
-The flake version of wrangler will be updated more frequently.
 
 ## Maintainers
 
