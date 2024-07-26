@@ -1,11 +1,10 @@
 # Cloudflare Workers Wrangler SDK Flake
 
-Packaged [Cloudflare Wrangler SDK](https://developers.cloudflare.com/workers/wrangler/) ([git repo](https://github.com/cloudflare/workers-sdk)) in a Nix flake.
+Packaged [Cloudflare Wrangler SDK](https://developers.cloudflare.com/workers/wrangler/) ([github repo](https://github.com/cloudflare/workers-sdk)) in a Nix flake.
 
 ## Why?
 
-[`wrangler`](https://search.nixos.org/packages?channel=unstable&show=wrangler&from=0&size=50&sort=relevance&type=packages&query=wrangler)
-is already bundled with `nixpkgs`. You can use it as a standard `nix` package
+`wrangler` is [already bundled](https://search.nixos.org/packages?channel=unstable&show=wrangler&from=0&size=50&sort=relevance&type=packages&query=wrangler) with `nixpkgs`. You can use it as a standard `nix` package
 as you would any other package...
 
 ```nix
@@ -15,7 +14,7 @@ as you would any other package...
   ];
 ```
 
-However, the release cadence of `wrangler`, is high - typically releasing a new
+However, the release cadence of `wrangler` is high - typically releasing a new
 version every week - and it is not really possible for `nixpkgs` to keep up
 with this. Hence, the version of `wrangler` available in `nixpkgs` will usually 
 be a little behind the latest version and if you're not using the `master` branch,
