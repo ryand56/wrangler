@@ -1,1 +1,11 @@
-* @ryand56
+# Repo info maintainers
+.github/* @ryand56
+README.md @ryand56
+
+# Package maintainers
+pkgs/* @dezren39 @seanrmurphy @ryand56
+flake.lock @dezren39 @seanrmurphy @ryand56
+flake.nix @dezren39 @seanrmurphy @ryand56
+
+# Test maintainers
+tests/* @seanrmurphy
