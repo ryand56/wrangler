@@ -41,6 +41,9 @@ Get the recent release of wrangler from FlakeHub in your flake inputs:
 }
 ```
 
+A more specific example of how this can be used in a workers project is 
+provided in [examples/hello-world](examples/hello-world).
+
 ## Maintainers
 
 - [dezren39](https://github.com/dezren39)
