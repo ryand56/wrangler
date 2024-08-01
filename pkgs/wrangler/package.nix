@@ -47,10 +47,15 @@ let
     # on certain subcommands due to this issue.
     platforms = [ "x86_64-linux" ];
   };
-in 
+in
 stdenv.mkDerivation (finalAttrs: {
-  inherit (pin) version; 
-  inherit pname src pnpmDeps meta;
+  inherit (pin) version;
+  inherit
+    pname
+    src
+    pnpmDeps
+    meta
+    ;
 
   buildInputs = [
     llvmPackages.libcxx

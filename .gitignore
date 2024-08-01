@@ -1,3 +1,5 @@
+**/.direnv
+/.envrc
 result
 examples/hello-world/.direnv
 examples/hello-world/node_modules/.mf
