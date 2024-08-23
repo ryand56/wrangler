@@ -36,13 +36,32 @@ Get the recent release of wrangler from FlakeHub in your flake inputs:
   inputs.wrangler.url = "https://flakehub.com/f/ryand56/wrangler/*.tar.gz";
 
   outputs = { self, wrangler }: {
-    # Use in your outputs
+    # Use wrangler in your outputs
   };
 }
 ```
 
 A more specific example of how this can be used in a workers project is 
 provided in [examples/hello-world](examples/hello-world).
+
+### Using the NAR Cache
+
+If you don't want to build the latest release of `wrangler` every time, you can skip the builds and download directly from my NAR cache, powered by [Attic](https://github.com/zhaofengli/attic).
+
+```nix
+{
+  inputs.wrangler.url = "github:ryand56/wrangler";
+
+  outputs = { self, wrangler }: {
+    nix.settings = {
+      substituters = [ "https://narcache.ryand.ca/wrangler" ];
+      trusted-public-keys = [ "wrangler:EPOtwWg86fX4kpNcdzGJeIHH6DbtyW/Q4U/C1MuUlHE=" ];
+    };
+
+    # Use wrangler in your outputs
+  };
+}
+```
 
 ## Maintainers
 
