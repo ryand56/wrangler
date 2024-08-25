@@ -25,9 +25,11 @@
         }
       );
 
-      checks = {
-        packages = self.packages;
-        devShells = self.devShells;
-      };
+      checks =
+        let
+          packages = self.packages;
+          devShells = self.devShells;
+        in
+        nixpkgs.lib.recursiveUpdate packages { } // nixpkgs.lib.recursiveUpdate devShells { };
     };
 }
