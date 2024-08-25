@@ -1,9 +1,6 @@
 {
   description = "Wrangler, the CLI for Cloudflare Workers, packaged as a nix flake";
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  };
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
   outputs =
     { self, nixpkgs }:
