@@ -27,5 +27,10 @@
           default = pkgs.mkShell { packages = with pkgs; [ nixfmt-rfc-style ]; };
         }
       );
+
+      checks = {
+        packages = self.packages;
+        devShells = self.devShells;
+      };
     };
 }
