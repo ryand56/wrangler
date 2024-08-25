@@ -12,8 +12,11 @@
     {
       packages = forEachSupportedSystem (
         { pkgs }:
-        rec {
+        let
           wrangler = pkgs.callPackage ./pkgs/wrangler/package.nix { };
+        in
+        {
+          inherit wrangler;
           default = wrangler;
         }
       );
@@ -30,6 +33,6 @@
           packages = self.packages;
           devShells = self.devShells;
         in
-        nixpkgs.lib.recursiveUpdate packages { } // nixpkgs.lib.recursiveUpdate devShells { };
+        packages // devShells;
     };
 }
