@@ -1,38 +1,40 @@
 {
   description = "Wrangler, the CLI for Cloudflare Workers, packaged as a nix flake";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+  };
 
   outputs =
-    { self, nixpkgs }:
-    let
-      supportedSystems = [ "x86_64-linux" ];
-      forEachSupportedSystem =
-        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = import nixpkgs { inherit system; }; });
-    in
-    {
-      packages = forEachSupportedSystem (
-        { pkgs }:
-        let
-          wrangler = pkgs.callPackage ./pkgs/wrangler/package.nix { };
-        in
-        {
-          inherit wrangler;
-          default = wrangler;
-        }
-      );
+    inputs@{ self, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, ... }:
+      {
+        systems = [ "x86_64-linux" ];
 
-      devShells = forEachSupportedSystem (
-        { pkgs }:
-        {
-          default = pkgs.mkShell { packages = with pkgs; [ nixfmt-rfc-style ]; };
-        }
-      );
+        perSystem =
+          {
+            self',
+            pkgs,
+            system,
+            ...
+          }:
+          rec {
+            packages = rec {
+              wrangler = pkgs.callPackage ./pkgs/wrangler/package.nix { };
+              default = wrangler;
+            };
 
-      checks =
-        let
-          packages = self.packages;
-          devShells = self.devShells;
-        in
-        packages // devShells;
-    };
+            devShells = {
+              default = pkgs.mkShell { packages = [ pkgs.nixfmt-rfc-style ]; };
+            };
+
+            checks = packages // devShells;
+          };
+      }
+    );
 }
