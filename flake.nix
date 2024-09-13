@@ -2,7 +2,7 @@
   description = "Wrangler, the CLI for Cloudflare Workers, packaged as a nix flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=c9b3cc8516d172318391adf89324f011567c56f5";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -30,7 +30,13 @@
             };
 
             devShells = {
-              default = pkgs.mkShell { packages = [ pkgs.nixfmt-rfc-style ]; };
+              default = pkgs.mkShell {
+                packages = [
+                  pkgs.nixfmt-rfc-style
+                  pkgs.nodejs
+                  pkgs.pnpm
+                ];
+              };
             };
 
             checks = packages // devShells;
