@@ -24,6 +24,8 @@
             ...
           }:
           rec {
+            formatter = pkgs.nixfmt-rfc-style;
+
             packages = rec {
               wrangler = pkgs.callPackage ./pkgs/wrangler/package.nix { };
               default = wrangler;
