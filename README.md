@@ -46,7 +46,7 @@ provided in [examples/hello-world](examples/hello-world).
 
 ### Using the NAR Cache
 
-If you don't want to build the latest release of `wrangler` every time, you can skip the builds and download directly from my NAR cache, powered by [Attic](https://github.com/zhaofengli/attic).
+If you don't want to build the latest release of `wrangler` every time, you can skip the builds and download directly from my NAR cache.
 
 ```nix
 {
@@ -54,8 +54,8 @@ If you don't want to build the latest release of `wrangler` every time, you can 
 
   outputs = { self, wrangler }: {
     nix.settings = {
-      substituters = [ "https://narcache.ryand.ca/wrangler" ];
-      trusted-public-keys = [ "wrangler:EPOtwWg86fX4kpNcdzGJeIHH6DbtyW/Q4U/C1MuUlHE=" ];
+      substituters = [ "https://wrangler.cachix.org" ];
+      trusted-public-keys = [ "wrangler.cachix.org-1:N/FIcG2qBQcolSpklb2IMDbsfjZKWg+ctxx0mSMXdSs=" ];
     };
 
     # Use wrangler in your outputs
