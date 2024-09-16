@@ -2,6 +2,7 @@ name: "Eval (devShells)"
 
 on:
   push:
+    branches: 'master'
   pull_request_target:
 
 jobs:
