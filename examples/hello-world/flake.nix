@@ -9,7 +9,7 @@
     #
     # wrangler-flake.url = "https://flakehub.com/f/ryand56/wrangler/0.2.1.tar.gz"
     #
-    # if it points to github, then running `nix flake update` will just get the 
+    # if it points to github, then running `nix flake update` will just get the
     # latest version from github and update wrangler as necessary.
     wrangler-flake.url = "github:ryand56/wrangler";
   };
@@ -41,7 +41,7 @@
         {
           default = pkgs.mkShell {
             packages = [
-              # it's possible to add this package as an override to nixpkgs; here it's just 
+              # it's possible to add this package as an override to nixpkgs; here it's just
               # added directly...
               wrangler-flake.packages.${system}.wrangler
               pkgs.cowsay # this is just included as an example of a package import from nixpkgs - include here any packages you require
