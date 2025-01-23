@@ -14,5 +14,7 @@ jobs:
       - uses: "cachix/install-nix-action@V28"
         with:
           nix_path: nixpkgs=channel:nixpkgs-unstable
+      - name: Check version
+        run: nix fmt -- --version
       - name: Check formatting
         run: nix fmt -- -c .
