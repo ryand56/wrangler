@@ -12,7 +12,11 @@
   xorg,
 }:
 let
-  pin = lib.importJSON ./pin.json;
+  pin = {
+    version = "3.93.0";
+    srcHash = "sha256-L46rgKw4EgJLkauSnV10JBLYCpuT9UuTqKwiAd8d7gg=";
+    pnpmDepsHash = "sha256-ahkXTVzXWeJnAeAPt2TJ8GZobjV2kd3Nuyxlb1RLKM0=";
+  };
 
   pname = "wrangler";
 
