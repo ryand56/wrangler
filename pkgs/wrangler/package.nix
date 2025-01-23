@@ -23,7 +23,7 @@ let
   src = fetchFromGitHub {
     owner = "cloudflare";
     repo = "workers-sdk";
-    rev = "wrangler@${pin.version}";
+    tag = "wrangler@${pin.version}";
     hash = pin.srcHash;
   };
 
