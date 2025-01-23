@@ -1,0 +1,39 @@
+name: "Cron: Check for updates"
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run at midnight every day
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  update-wrangler:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: "cachix/install-nix-action@V28"
+
+      - name: Update wrangler
+        id: update
+        run: |
+          nix run github:Mic92/nix-update -- default --flake
+          if git diff --quiet; then
+            echo "No updates available"
+            exit 0
+          fi
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.update.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore(deps): update wrangler package'
+          title: 'Update wrangler to latest version'
+          body: |
+            This PR updates the wrangler package to its latest version.
+            
+            This update was performed automatically by the daily dependency update workflow.
+          branch: update-wrangler
+          delete-branch: true
