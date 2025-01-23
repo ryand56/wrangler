@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+      - uses: actions/create-github-app-token@v1
+        id: generate-token
+        with:
+          app-id: ${{ secrets.UPDATE_APP_ID }}
+          private-key: ${{ secrets.UPDATE_APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v4
 
       - name: Install Nix
@@ -37,3 +43,4 @@ jobs:
             This update was performed automatically by the daily dependency update workflow.
           branch: update-wrangler
           delete-branch: true
+          token: ${{ steps.generate-token.outputs.token }}
