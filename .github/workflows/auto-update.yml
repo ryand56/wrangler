@@ -24,19 +24,16 @@ jobs:
       - name: Update wrangler
         id: update
         run: |
+          echo "previous_version=$(nix eval --raw .#wrangler.version)"
           nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(.*)'
-          if git diff --quiet; then
-            echo "No updates available"
-            exit 0
-          fi
-          echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "new_version=$(nix eval --raw .#wrangler.version)"
 
       - name: Create Pull Request
-        if: steps.update.outputs.has_changes == 'true'
+        if: steps.update.outputs.previous_version != steps.update.outputs.new_version
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: 'chore(deps): update wrangler package'
-          title: 'Update wrangler to latest version'
+          commit-message: 'wrangler: ${{ steps.update.outputs.previous_version }} -> ${{ steps.update.outputs.new_version }}'
+          title: 'wrangler: ${{ steps.update.outputs.previous_version }} -> ${{ steps.update.outputs.new_version }}'
           body: |
             This PR updates the wrangler package to its latest version.
             
