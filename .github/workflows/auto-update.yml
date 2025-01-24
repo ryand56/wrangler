@@ -24,7 +24,7 @@ jobs:
       - name: Update wrangler
         id: update
         run: |
-          nix run github:Mic92/nix-update -- default --flake
+          nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(.*)'
           if git diff --quiet; then
             echo "No updates available"
             exit 0
