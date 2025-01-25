@@ -68,3 +68,4 @@ If you don't want to build the latest release of `wrangler` every time, you can 
 - [dezren39](https://github.com/dezren39)
 - [seanrmurphy](https://github.com/seanrmurphy)
 - [ryand56](https://github.com/ryand56)
+- [lemmih](https://github.com/lemmih)
