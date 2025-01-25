@@ -19,5 +19,6 @@ jobs:
         with:
           name: wrangler
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: ${{ github.event_name == 'pull_request' }}
       - name: Check
         run: nix flake check -L
