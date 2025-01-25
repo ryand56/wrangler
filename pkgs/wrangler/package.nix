@@ -13,9 +13,9 @@
 }:
 let
   pin = {
-    version = "3.105.0";
-    srcHash = "sha256-2GJfx9VRKCvDRnPA8OPld+88+DRj10s3ukuavZpZJGU=";
-    pnpmDepsHash = "sha256-chgB5SHYFEDLg3yrWdRKTqI+q4Fd6fXSg8aJcjWlq4o=";
+    version = "3.105.1";
+    srcHash = "sha256-bOPmBCSOj/uolRjp5/PmB7NZsK0eqdgmbNA7/UPnHzs=";
+    pnpmDepsHash = "sha256-GufjVYTUQHizh5Y7WkEkxianI+2cKlx4OPBvrswl2e8=";
   };
 
   pname = "wrangler";
