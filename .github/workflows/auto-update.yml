@@ -24,9 +24,9 @@ jobs:
       - name: Update wrangler
         id: update
         run: |
-          echo "previous_version=$(nix eval --raw .#wrangler.version)"
+          echo "previous_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
           nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(.*)'
-          echo "new_version=$(nix eval --raw .#wrangler.version)"
+          echo "new_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
         if: steps.update.outputs.previous_version != steps.update.outputs.new_version
