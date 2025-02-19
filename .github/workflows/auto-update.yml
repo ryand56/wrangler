@@ -25,7 +25,7 @@ jobs:
         id: update
         run: |
           echo "previous_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
-          nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(.*)'
+          nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(.*)' --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.11
           echo "new_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
