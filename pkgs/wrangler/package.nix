@@ -12,10 +12,16 @@
   xorg,
 }:
 let
+  # wrangler requires pnpm 9.12.0
+  pnpm = pnpm_9.override {
+    version = "9.12.0";
+    hash = "sha256-phtn/2zJevhkVk9EQlVsIqBPLlp3FPvudqEBE2HZtyY=";
+  };
+
   pin = {
-    version = "3.107.2";
-    srcHash = "sha256-FIuilM1ZOFCYRnQtR3TKD2KyIDgzxvDiyoGX1RdmHnU=";
-    pnpmDepsHash = "sha256-NPbzBnbBKSnibHwPkEQDRxBr2XrABmCKLZH7vrydZq4=";
+    version = "3.111.0";
+    srcHash = "sha256-k15X2BrDeObRSF4gUKhyuv6F0+2HdoJx01J78R8Wxzc=";
+    pnpmDepsHash = "sha256-jzqQBApUeheu4v2fVQx8ewBPOi3fa47cKC+n2j6riUI=";
   };
 
   pname = "wrangler";
@@ -27,7 +33,7 @@ let
     hash = pin.srcHash;
   };
 
-  pnpmDeps = pnpm_9.fetchDeps {
+  pnpmDeps = pnpm.fetchDeps {
     inherit (pin) version;
     inherit pname src;
     hash = pin.pnpmDepsHash;
@@ -76,7 +82,7 @@ stdenv.mkDerivation (finalAttrs: {
     [
       makeWrapper
       nodejs
-      pnpm_9.configHook
+      pnpm.configHook
     ]
     ++ lib.optionals (stdenv.hostPlatform.isLinux) [
       autoPatchelfHook
