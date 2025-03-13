@@ -2,9 +2,13 @@ name: "Eval"
 
 on:
   push:
-    branches: 'master'
+    branches:
+      - v3
+      - v4
   pull_request:
-    branches: 'master'
+    branches:
+      - v3
+      - v4
 
 jobs:
   check:
