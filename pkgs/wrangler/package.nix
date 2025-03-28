@@ -19,8 +19,8 @@ let
   };
 
   pin = {
-    version = "4.5.0";
-    srcHash = "sha256-VMu0IaMGSa1KJnqAyUeyoTwHp/A0YUK4ErwgZ0QRrrw=";
+    version = "4.5.1";
+    srcHash = "sha256-pZTeUJ8tXy22f/buvHyCVGYJASUwUrAL2mSOhULeJ6I=";
     pnpmDepsHash = "sha256-S3Crwmqziq38UmvD8SqYkxzXHphuJUe9LG6z7uX+IjM=";
   };
 
