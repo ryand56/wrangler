@@ -2,7 +2,7 @@
   description = "Wrangler, the CLI for Cloudflare Workers, packaged as a nix flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/?rev=e03df76c3a8ac2119f45ff18c9b994513dbb7a4c";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
