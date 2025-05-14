@@ -19,9 +19,9 @@ let
   };
 
   pin = {
-    version = "4.14.4";
-    srcHash = "sha256-tODIqPe72BuYo/ifIPgAUlRiw+VeWjGwg8ag6T9tffs=";
-    pnpmDepsHash = "sha256-A83nmTm7qp23jO+jXwojEblm3IWA8YkhncVancYr4L0=";
+    version = "4.15.0";
+    srcHash = "sha256-9e07tMt3y3PUmD3cByKHR3J8Hs7pvgC1/mtIY1W3av0=";
+    pnpmDepsHash = "sha256-V1DGRgMkIVRewgio5RrHjlHNbtk8A7ECWapUjrzNj+8=";
   };
 
   pname = "wrangler";
