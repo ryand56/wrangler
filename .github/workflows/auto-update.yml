@@ -41,6 +41,8 @@ jobs:
             This update was performed automatically by the daily dependency update workflow.
           branch: update-wrangler_v4
           delete-branch: true
+          author: 'wrangler-update[bot] <196232867+wrangler-update[bot]@users.noreply.github.com>'
+          committer: 'wrangler-update[bot] <196232867+wrangler-update[bot]@users.noreply.github.com>'
           token: ${{ steps.generate-token.outputs.token }}
 
       - name: Enable Automerge
