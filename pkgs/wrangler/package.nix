@@ -15,8 +15,8 @@
 }:
 let
   pin = {
-    version = "4.16.0";
-    srcHash = "sha256-H/ds5NfOjyTZ4AcsCAP0wbalgOljOUtLSjkjEn+atVk=";
+    version = "4.16.1";
+    srcHash = "sha256-5mRoQFfOwQ9PC97WdspnRLAFoyAdGpJuV7Ii6ilkR8I=";
     pnpmDepsHash = "sha256-msIXeN8t8Dm3RUkw4woZIMn7wXxw/0jVl8oFmkPJbrA=";
   };
 
