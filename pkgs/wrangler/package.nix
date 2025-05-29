@@ -15,9 +15,9 @@
 }:
 let
   pin = {
-    version = "4.17.0";
-    srcHash = "sha256-PXVfNYy1gzK1OqYOeGRxTRRrxNEQkEhAjE5J9yKcQ/w=";
-    pnpmDepsHash = "sha256-OCxUhvPIPKSGTTeXaLmkErOBpYQ8mKmieUYj6qxuTK4=";
+    version = "4.18.0";
+    srcHash = "sha256-nm5jdIVRB/rSvNADZKfSwmsSTGifDQ6wHKETExfFzUY=";
+    pnpmDepsHash = "sha256-vfSHWqISLZjqdQqAU+zgr0TIK5y/qscbQn5gMEgLtaA=";
   };
 
   # pnpm packageManager version in workers-sdk root package.json may not match nixpkgs
