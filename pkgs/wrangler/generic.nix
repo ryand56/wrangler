@@ -1,4 +1,11 @@
 {
+  version,
+  rev ? "refs/tags/wrangler@${version}",
+  hash,
+  pnpmDepsHash,
+}:
+
+{
   lib,
   stdenv,
   cacert,
@@ -14,32 +21,27 @@
   moreutils,
 }:
 let
-  pin = {
-    version = "4.19.1";
-    srcHash = "sha256-auB94oueAhiZ/zVt0wstLQyAYd9eakegdK1iNkaJa50=";
-    pnpmDepsHash = "sha256-B/ZsccF6E0exhZ6Ii72QjXvFUOFZipdXmdIs5KBFd38=";
-  };
-
   # pnpm packageManager version in workers-sdk root package.json may not match nixpkgs
   # Credits to @ezrizhu
   preConfigure = ''
     jq 'del(.packageManager)' package.json | sponge package.json
   '';
 
+  majorVersion = lib.versions.major version;
+  versionAtLeastFour = lib.versionAtLeast majorVersion "4";
+
   pname = "wrangler";
 
   src = fetchFromGitHub {
     owner = "cloudflare";
     repo = "workers-sdk";
-    tag = "wrangler@${pin.version}";
-    hash = pin.srcHash;
+    inherit rev hash;
   };
 
   pnpmDeps =
     (pnpm_9.fetchDeps {
-      inherit (pin) version;
-      inherit pname src;
-      hash = pin.pnpmDepsHash;
+      inherit pname version src;
+      hash = pnpmDepsHash;
     }).overrideAttrs
       (_: {
         preInstall = preConfigure;
@@ -66,10 +68,12 @@ let
   };
 in
 stdenv.mkDerivation {
-  inherit (pin) version;
   inherit
     pname
+    version
+
     src
+
     pnpmDeps
     preConfigure
     meta
@@ -99,7 +103,7 @@ stdenv.mkDerivation {
 
   # Credits to @ezrizhu
   postBuild = ''
-    mv packages/vitest-pool-workers packages/~vitest-pool-workers
+    ${lib.optionalString versionAtLeastFour "mv packages/vitest-pool-workers packages/~vitest-pool-workers"}
     NODE_ENV="production" pnpm --filter workers-shared run build
     NODE_ENV="production" pnpm --filter miniflare run build
     NODE_ENV="production" pnpm --filter wrangler run build
@@ -115,7 +119,7 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out/bin $out/lib $out/lib/packages/wrangler
-    mv packages/~vitest-pool-workers packages/vitest-pool-workers
+    ${lib.optionalString versionAtLeastFour "mv packages/~vitest-pool-workers packages/vitest-pool-workers"}
     cp -r fixtures $out/lib
     cp -r packages $out/lib
     cp -r node_modules $out/lib
