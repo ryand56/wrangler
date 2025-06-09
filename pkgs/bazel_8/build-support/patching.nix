@@ -22,4 +22,3 @@
       installPhase = ''cp result.patch $out'';
     };
 }
-

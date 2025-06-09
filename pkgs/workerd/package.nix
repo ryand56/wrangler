@@ -9,7 +9,7 @@ buildBazelPackage rec {
   pname = "workerd";
   version = "1.20250608.0";
   bazel = callPackage ../bazel_8/package.nix { };
-  
+
   src = fetchFromGitHub {
     owner = "cloudflare";
     repo = "workerd";
@@ -25,7 +25,7 @@ buildBazelPackage rec {
   bazelFlags = [
     "--config"
     "thin-lto"
-    
+
     "--linkopt"
     "-lc++"
 
