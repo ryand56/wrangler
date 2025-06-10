@@ -13,6 +13,7 @@ jobs:
     name: Package Changes
     runs-on: ubuntu-latest
     outputs:
+      flake: ${{ steps.changes.outputs.flake }}
       src: ${{ steps.changes.outputs.src }}
       wranglerLatest: ${{ steps.changes.outputs.wranglerLatest }}
       wrangler3: ${{ steps.changes.outputs.wrangler3 }}
@@ -22,6 +23,9 @@ jobs:
         id: changes
         with:
           filters: |
+            flake:
+              - 'flake.nix'
+              - 'flake.lock'
             src:
               - 'pkgs/wrangler/generic.nix'
             wranglerLatest:
@@ -65,7 +69,7 @@ jobs:
     needs:
       - changes
       - nixExprs
-    if: ${{ needs.changes.outputs.src == 'true' || needs.changes.outputs.wranglerLatest == 'true' }}
+    if: ${{ needs.changes.outputs.flake == 'true' || needs.changes.outputs.src == 'true' || needs.changes.outputs.wranglerLatest == 'true' }}
     uses: ./.github/workflows/build-wrangler.yml
     with:
       wranglerPackage: wrangler
@@ -76,7 +80,7 @@ jobs:
     needs:
       - changes
       - nixExprs
-    if: ${{ needs.changes.outputs.src == 'true' || needs.changes.outputs.wrangler3 == 'true' }}
+    if: ${{ needs.changes.outputs.flake == 'true' || needs.changes.outputs.src == 'true' || needs.changes.outputs.wrangler3 == 'true' }}
     uses: ./.github/workflows/build-wrangler.yml
     with:
       wranglerPackage: wrangler_3
