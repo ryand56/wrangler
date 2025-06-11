@@ -25,7 +25,7 @@ jobs:
         id: update
         run: |
           echo "previous_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
-          nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(4.*)'
+          nix run github:Mic92/nix-update -- default --flake --version-regex 'wrangler@(4.*)' --override-filename pkgs/wrangler/4_x.nix
           echo "new_version=$(nix eval --raw .#wrangler.version)" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
@@ -70,7 +70,7 @@ jobs:
         id: update
         run: |
           echo "previous_version=$(nix eval --raw .#wrangler_3.version)" >> "$GITHUB_OUTPUT"
-          nix run github:Mic92/nix-update -- wrangler_3 --flake --version-regex 'wrangler@(3.*)'
+          nix run github:Mic92/nix-update -- wrangler_3 --flake --version-regex 'wrangler@(3.*)' --override-filename pkgs/wrangler/3_x.nix
           echo "new_version=$(nix eval --raw .#wrangler_3.version)" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
