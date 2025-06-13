@@ -29,11 +29,14 @@ few days of the latest `wrangler` release.
 
 ## Usage
 
-Get the recent release of wrangler from FlakeHub in your flake inputs:
+Get the recent release of wrangler in your flake inputs:
 
 ```nix
 {
-  inputs.wrangler.url = "https://flakehub.com/f/ryand56/wrangler/*.tar.gz";
+  inputs.wrangler = {
+    url = "github:emrldnix/wrangler";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = { self, wrangler }: {
     # Use wrangler in your outputs
@@ -50,7 +53,10 @@ If you don't want to build the latest release of `wrangler` every time, you can 
 
 ```nix
 {
-  inputs.wrangler.url = "github:ryand56/wrangler";
+  inputs.wrangler = {
+    url = "github:emrldnix/wrangler";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = { self, wrangler }: {
     nix.settings = {
