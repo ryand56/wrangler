@@ -9,6 +9,8 @@ jobs:
   eval:
     name: Eval
     uses: ./.github/workflows/eval.yml
+    secrets:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
   no-pr-failures:
     name: 'No PR Failures'

@@ -5,6 +5,9 @@ on:
     branches:
       - master
   workflow_call:
+    secrets:
+      CACHIX_AUTH_TOKEN:
+        required: true
 
 jobs:
   changes:
