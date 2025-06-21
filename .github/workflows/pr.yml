@@ -1,0 +1,20 @@
+name: PR
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  eval:
+    name: Eval
+    uses: ./.github/workflows/eval.yml
+
+  no-pr-failures:
+    name: 'No PR Failures'
+    needs:
+      - eval
+    if: ${{ failure() }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - run: exit 1
