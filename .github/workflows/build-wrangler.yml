@@ -40,7 +40,7 @@ jobs:
           authToken: '${{ secrets.cachixToken }}'
           skipPush: ${{ github.event_name == 'pull_request' }}
       - name: Build
-        run: nix build .#packages.${{ matrix.name }}.wrangler
+        run: nix build .#packages.${{ matrix.name }}.${{ inputs.wranglerPackage }}
       - name: Version check
         run: ./result/bin/wrangler -v
 
