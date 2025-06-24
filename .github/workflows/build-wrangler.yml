@@ -38,7 +38,7 @@ jobs:
         with:
           name: wrangler
           authToken: '${{ secrets.cachixToken }}'
-          skipPush: ${{ github.event_name == 'pull_request' }}
+          skipPush: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
       - name: Build
         run: nix build -L .#packages.${{ matrix.name }}.${{ inputs.wranglerPackage }}
       - name: Version check
