@@ -31,9 +31,9 @@ jobs:
       - uses: nixbuild/nix-quick-install-action@v32
       - uses: nix-community/cache-nix-action@v6
         with:
-          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-
-          gc-max-store-size-linux: 5G
+          primary-key: nix-${{ inputs.wranglerPackage }}-${{ matrix.name }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ inputs.wranglerPackage }}-${{ matrix.name }}-
+          gc-max-store-size-linux: 2G
       - uses: cachix/cachix-action@v16
         env:
           cachixAuth: ${{ secrets.cachixToken }}

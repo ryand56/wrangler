@@ -24,8 +24,8 @@ jobs:
       - uses: nixbuild/nix-quick-install-action@v32
       - uses: nix-community/cache-nix-action@v6
         with:
-          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-
+          primary-key: nix-workerd-${{ matrix.name }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-workerd-${{ matrix.name }}-
           gc-max-store-size-linux: 5G
       - name: Build
         run: nix build .#packages.${{ matrix.name }}.workerd
