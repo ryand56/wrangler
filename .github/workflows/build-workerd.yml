@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: nixbuild/nix-quick-install-action@v31
+      - uses: nixbuild/nix-quick-install-action@v32
       - uses: nix-community/cache-nix-action@v6
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
@@ -29,3 +29,5 @@ jobs:
           gc-max-store-size-linux: 5G
       - name: Build
         run: nix build .#packages.${{ matrix.name }}.workerd
+        env:
+          NIX_PATH: nixpkgs=channel:nixpkgs-unstable
