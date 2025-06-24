@@ -21,7 +21,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: nixbuild/nix-quick-install-action@v32
+      - uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixpkgs-unstable
       - uses: nix-community/cache-nix-action@v6
         with:
           primary-key: nix-workerd-${{ matrix.name }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
