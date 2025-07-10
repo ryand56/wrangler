@@ -1,5 +1,5 @@
 import ./generic.nix {
-  version = "4.24.0";
-  hash = "sha256-4AdZzB3KHsoi8fFeuNOs5+8X4IiXLuPJgt5gNfRhsWM=";
-  pnpmDepsHash = "sha256-3ZeiGEcc0ESTiXggkUBYeY+q0JxkKgn9ybU6B0pE7kA=";
+  version = "4.24.1";
+  hash = "sha256-/Gl/aoTcHyeRH7UgZVa49MaSbeBMcPL6grIvV38ps3U=";
+  pnpmDepsHash = "sha256-xOoYQe/bY0wnkGIeRi83T8bxFk3yHJruhfb93vT7zLY=";
 }
